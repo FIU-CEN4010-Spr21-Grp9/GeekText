@@ -1,4 +1,4 @@
-package GeekText.restservice;
+package GeekTextRest.restservice;
 
 public class Greeting {
 
