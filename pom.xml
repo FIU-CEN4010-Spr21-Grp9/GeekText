@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>CEN4010-Spring2021-Grp9</groupId>
-	<artifactId>GeekTextRestful</artifactId>
+	<artifactId>GeekTextRest</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>GeekTextRestful</name>
+	<name>GeekTextRest</name>
 	<description>Restful API for GeekText app</description>
 	<properties>
 		<java.version>1.8</java.version>
