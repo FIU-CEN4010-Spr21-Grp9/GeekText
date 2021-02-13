@@ -1,0 +1,202 @@
+// This code is untested, i'll have to check it later. Also, sorry for the mess I can fix it up later as well. 
+
+import java.util.*;
+
+public class userPayment {
+    private long cardNumber;
+    private int securityCode;
+    private int expirationDate;
+    private String firstName;
+    private String lastName;
+
+    Scanner scnr = new Scanner(System.in);
+
+    public void setCardNumber (long num)
+    {
+        cardNumber = num;
+    }
+
+    public void setExpirationDate (int date)
+    {
+        expirationDate = date;
+    }
+
+    public void setSecurityCode (int code)
+    {
+        securityCode = code;
+    }
+
+    public void setFirstName (String first)
+    {
+        firstName = first;
+    }
+
+    public void setLastName (String last)
+    {
+        lastName = last;
+    }
+
+    public long getCardNumber ()
+    {
+        return cardNumber;
+    }
+
+    public int getExpirationDate ()
+    {
+        return expirationDate;
+    }
+
+    public int getSecurityCode ()
+    {
+        return securityCode;
+    }
+
+    public String getFirstName ()
+    {
+        return firstName;
+    }
+
+    public String getLastName()
+    {
+        return lastName;
+    }
+
+    // Checks if the input is all numbers and if it's the right length for a card number (15 or 16 digits).
+    private boolean checkCardNumber (long num) throws NumberFormatException
+    {
+        // Checks if input is a long
+        String numString = String.valueOf(num);
+        try {
+            long numberValidation = Long.parseLong(numString);
+        } catch (NumberFormatException e) {
+            System.out.println("Enter a valid card number.");
+            checkCardNumber(scnr.nextLong());
+        }
+        // Checks the numbers length
+        int digits = numString.length();
+        if (digits != 16 && digits != 15)
+        {
+            System.out.println("Please, enter a valid card number.");
+            checkCardNumber(scnr.nextLong());
+        }
+
+        return true;
+    }
+
+    /*
+        Date is a 4 digit number, the first 2 should be the month and the last two the year.
+
+        Checks if the expiration dates first two digits are between "01" & "12". Also checks if the last two are
+        between "16" & "26" (this assumes cards have to be renewed every 5 yrs). Any variable with the letter 'S' to the
+        right of it is simply the String version of the int.
+
+        I really wanna try to add that auto insert "/" feature when inputting dates but I think that
+        should be through the UI??
+     */
+    private boolean checkExpirationDate (int date) throws NumberFormatException
+    {
+        // Checks if input is an int
+        String dateS = String.valueOf(date);
+        try {
+            int dateValidation = Integer.parseInt(dateS);
+        } catch (NumberFormatException e) {
+            System.out.println("Enter a valid expiration date.");
+            checkExpirationDate(scnr.nextInt());
+        }
+
+        // Checks the length of the date, it should only be 4 digits.
+        int digits = dateS.length();
+        if (digits != 4)
+        {
+            System.out.println("Please, enter a valid expiration date.");
+            checkExpirationDate(scnr.nextInt());
+        }
+
+        // This will get the last digit and remove it then, get the new last digit. Thus getting the last two (year).
+        int lastDateDigit = date % 10;  // 4th digit
+        int a = date/10;  // The variable 'a' will be used to take apart the date (3 digits).
+        int b = a % 10;  // The variable 'b' will be used to hold a specific digit of the date (3rd digit).
+        String yearS = String.valueOf(b).concat(String.valueOf(lastDateDigit)); // Places the last two digits together.
+        int year = Integer.parseInt(yearS); // Last 2 digits
+
+        // Checks the years range (16-26)
+        if (year < 16 || year > 26)
+        {
+            System.out.println("Enter a valid year.");
+            checkExpirationDate(scnr.nextInt());
+        }
+
+        a = a/10; // 2 digits
+        b = a % 10; // 2nd digit
+        a = a/10; // 1 digit
+        String monthS = String.valueOf(a).concat(String.valueOf(b)); // Places first two digits together
+        int month = Integer.parseInt(monthS); // First 2 digits
+
+        // Checks the months range (01-12)
+        if (month < 10)
+        {
+            // Checks a portion of the months range (01-09)
+            if (String.valueOf(monthS.charAt(0)).equals("0")) {
+                int m = monthS.charAt(1);
+                if (m < 1 || m > 9) {
+                    System.out.println("Enter a valid month.");
+                    checkExpirationDate(scnr.nextInt());
+                }
+            }
+        } else if (month > 12) {
+            System.out.println("Enter a valid month.");
+            checkExpirationDate(scnr.nextInt());
+        }
+
+        return true;
+    }
+
+    // Checks if the cards security code is valid
+    private boolean checkSecurityCode (int code) throws NumberFormatException
+    {
+        // Checks if the input is an int
+        String codeS = String.valueOf(code);
+        try {
+            int codeValidation = Integer.parseInt(codeS);
+        } catch (NumberFormatException e) {
+            System.out.println("Enter a valid security code.");
+            checkSecurityCode(scnr.nextInt());
+        }
+
+        // Checks the length of the security code, it should only be 3 digits.
+        int digits = codeS.length();
+        if (digits != 3)
+        {
+            System.out.println("Please, enter a valid security code.");
+            checkSecurityCode(scnr.nextInt());
+        }
+
+        return true;
+    }
+
+    // Checks if first name consists of only letters
+    private boolean checkFirstName (String first)
+    {
+        boolean lettersOnly;
+        lettersOnly = first.matches("^[a-zA-Z]*$");
+        if (!lettersOnly)
+        {
+            System.out.println("Please, enter a valid first name.");
+            checkFirstName(scnr.next());
+        }
+        return true;
+    }
+
+    // Checks if last name consists of only letters
+    private boolean checkLastName (String last)
+    {
+        boolean lettersOnly;
+        lettersOnly = last.matches("^[a-zA-Z]*$");
+        if (!lettersOnly)
+        {
+            System.out.println("Please, enter a valid last name.");
+            checkLastName(scnr.next());
+        }
+        return true;
+    }
+}
