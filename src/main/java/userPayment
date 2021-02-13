@@ -1,4 +1,198 @@
-// This code is untested, i'll have to check it later. Also, sorry for the mess I can fix it up later as well. 
+// This code is untested, i'll have to check it later. Also, sorry for the mess I can fix it up later as well. This first class isn't even finished.
+
+import java.util.*;
+
+public class userCreation {
+    String userName;
+    String userNickname;
+    String userEmail;
+    String userPassword;
+    String userStreet;
+    String userCity;
+    String userState;
+    String userFirstName;
+    String userLastName;
+    char userMiddleInitial;
+    int userZipCode;
+
+    Scanner scnr = new Scanner(System.in);
+
+    private void checkUserFirstName (String first)
+    {
+        userFirstName = first;
+    }
+
+    // Checks if first name consists of only letters
+    private boolean checkFirstName (String first)
+    {
+        boolean lettersOnly;
+        lettersOnly = first.matches("^[a-zA-Z]*$");
+        if (!lettersOnly)
+        {
+            System.out.println("Please, enter a valid last name.");
+            checkFirstName(scnr.next());
+        }
+        return true;
+    }
+
+    private void setUserLastName (String last)
+    {
+        userLastName = last;
+    }
+
+    // Checks if last name consists of only letters
+    private boolean checkLastName (String last)
+    {
+        boolean lettersOnly;
+        lettersOnly = last.matches("^[a-zA-Z]*$");
+        if (!lettersOnly)
+        {
+            System.out.println("Please, enter a valid last name.");
+            checkLastName(scnr.next());
+        }
+        return true;
+    }
+
+    private void setUserMiddleInitial (char m)
+    {
+        userMiddleInitial = m;
+    }
+
+    // Checks if the middle initial is a letter
+    private boolean checkMiddleInitial (char m)
+    {
+        boolean letter;
+        letter = String.valueOf(m).matches("^[a-zA-Z]*$");
+        if (!letter)
+        {
+            System.out.println("Please, enter a valid middle initial.");
+            checkMiddleInitial(scnr.next().charAt(0));
+        }
+        return true;
+    }
+
+    private void setUserName (String name)
+    {
+        userName = name;
+    }
+
+    private void setUserNickname (String nickname)
+    {
+        userNickname = nickname;
+    }
+
+    private void setUserEmail (String email)
+    {
+        userEmail = email;
+    }
+
+    private void checkEmail (String email)
+    {
+        if (!email.contains("@") || !email.contains(".com"))
+        {
+            System.out.println("Please, enter a valid email.");
+            checkEmail(scnr.next());
+        }
+    }
+
+    private void setUserPassword (String password)
+    {
+        userPassword = password;
+    }
+
+    private void checkPassword (String pass)
+    {
+        // must have 2 special characters and a capital letter
+    }
+
+    private void setUserZipCode (int zip)
+    {
+        userZipCode = zip;
+    }
+
+    private void checkUserZipCode (int zip)
+    {
+        // four numbers
+    }
+
+    private void setUserStreet (String street)
+    {
+        userStreet = street;
+    }
+
+    private void checkUserStreet (String street)
+    {
+        // think bout dis 1
+    }
+
+    private void setUserCity (String city)
+    {
+        userCity = city;
+    }
+
+    private void checkCity (String city)
+    {
+        // must be existing US city
+    }
+
+    private void setUserState (String state)
+    {
+        userState = state;
+    }
+
+    private void checkState (String state)
+    {
+        // must be existing US state
+    }
+    public String getUserName()
+    {
+        return userName;
+    }
+
+    public String getUserNickname ()
+    {
+        return userNickname;
+    }
+
+    public String getUserEmail ()
+    {
+        return userEmail;
+    }
+
+    public String getUserState () { return userState; }
+
+    public String getUserStreet ()
+    {
+        return userStreet;
+    }
+
+    public String getUserCity ()
+    {
+        return userCity;
+    }
+
+    public int getUserZipCode ()
+    {
+        return userZipCode;
+    }
+}
+
+/*
+
+
+
+
+
+
+NEXT CLASS: userPayment
+
+
+
+
+
+*/
+
+// This class is "done", conceptually. Again, it's untested.
 
 import java.util.*;
 
@@ -13,26 +207,31 @@ public class userPayment {
 
     public void setCardNumber (long num)
     {
+        checkCardNumber(num);
         cardNumber = num;
     }
 
     public void setExpirationDate (int date)
     {
+        checkExpirationDate(date);
         expirationDate = date;
     }
 
     public void setSecurityCode (int code)
     {
+        checkSecurityCode(code);
         securityCode = code;
     }
 
     public void setFirstName (String first)
     {
+        checkFirstName(first);
         firstName = first;
     }
 
     public void setLastName (String last)
     {
+        checkLastName(Last);
         lastName = last;
     }
 
