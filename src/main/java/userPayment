@@ -2,11 +2,9 @@
 
 import java.util.*;
 
-public class userCreation {
+public class createUser {
     String userName;
     String userNickname;
-    String userEmail;
-    String userPassword;
     String userStreet;
     String userCity;
     String userState;
@@ -17,10 +15,72 @@ public class userCreation {
 
     Scanner scnr = new Scanner(System.in);
 
-    private void checkUserFirstName (String first)
+    public createUser(String userName, String first, String last,
+                      String nickName, String street,
+                      String state, String city,
+                      int zip, char middle)
     {
-        userFirstName = first;
+        setUserName(userName);
+        setUserFirstName(first);
+        setUserMiddleInitial(middle);
+        setUserLastName(last);
+        setUserNickname(nickName);
+        setUserCity(city);
+        setUserState(state);
+        setUserStreet(street);
+        setUserZipCode(zip);
+
     }
+
+    private void setUserName (String name) { userName = name; } // will be used as a user key
+
+    private void setUserNickname (String nickname) { userNickname = nickname; }
+
+    private void setUserCity (String city) { userCity = city; } // drop down list
+
+    private void setUserState (String state) { userState = state; } // drop down
+
+    private void setUserZipCode (int zip)
+    {
+        if (checkZipCode(zip))
+            userZipCode = zip;
+    }
+
+    private void setUserStreet (String street)
+    {
+        if (checkUserStreet(street))
+            userStreet = street;
+    }
+
+    private void setUserMiddleInitial (char m)
+    {
+        if (checkMiddleInitial(m));
+            userMiddleInitial = m;
+    }
+
+    private void setUserFirstName (String first)
+    {
+        if (checkFirstName(first))
+            userFirstName = first;
+    }
+
+    private void setUserLastName (String last)
+    {
+        if (checkLastName(last))
+            userLastName = last;
+    }
+
+    public String getUserState () { return userState; }
+
+    public String getUserName() { return userName; }
+
+    public String getUserNickname () { return userNickname; }
+
+    public String getUserStreet () { return userStreet; }
+
+    public String getUserCity () { return userCity; }
+
+    public int getUserZipCode () { return userZipCode; }
 
     // Checks if first name consists of only letters
     private boolean checkFirstName (String first)
@@ -35,11 +95,6 @@ public class userCreation {
         return true;
     }
 
-    private void setUserLastName (String last)
-    {
-        userLastName = last;
-    }
-
     // Checks if last name consists of only letters
     private boolean checkLastName (String last)
     {
@@ -51,11 +106,6 @@ public class userCreation {
             checkLastName(scnr.next());
         }
         return true;
-    }
-
-    private void setUserMiddleInitial (char m)
-    {
-        userMiddleInitial = m;
     }
 
     // Checks if the middle initial is a letter
@@ -71,331 +121,126 @@ public class userCreation {
         return true;
     }
 
-    private void setUserName (String name)
+    // does not actually check for valid zipcodes, just the correct format
+    private boolean checkZipCode (int zip)
     {
-        userName = name;
+        // Checks if input is an int
+            String zipS = String.valueOf(zip);
+            try {
+                int dateValidation = Integer.parseInt(zipS);
+            } catch (NumberFormatException e) {
+                System.out.println("Enter a valid expiration date.");
+                checkZipCode(scnr.nextInt());
+            }
+            // Checks the length of the date, it should only be 4 digits.
+            int digits = zipS.length();
+            if (digits != 4)
+            {
+                System.out.println("Please, enter a valid expiration date.");
+                checkZipCode(scnr.nextInt());
+            }
+
+            return true;
     }
 
-    private void setUserNickname (String nickname)
+    private boolean checkUserStreet (String street)
     {
-        userNickname = nickname;
-    }
-
-    private void setUserEmail (String email)
-    {
-        userEmail = email;
-    }
-
-    private void checkEmail (String email)
-    {
-        if (!email.contains("@") || !email.contains(".com"))
+        boolean lettersAndNumbers;
+        lettersAndNumbers = street.matches("^[a-zA-Z0-9]+$");
+        if (!lettersAndNumbers)
         {
-            System.out.println("Please, enter a valid email.");
-            checkEmail(scnr.next());
+            System.out.println("Please, enter a valid street.");
+            checkUserStreet(scnr.next());
         }
-    }
-
-    private void setUserPassword (String password)
-    {
-        userPassword = password;
-    }
-
-    private void checkPassword (String pass)
-    {
-        // must have 2 special characters and a capital letter
-    }
-
-    private void setUserZipCode (int zip)
-    {
-        userZipCode = zip;
-    }
-
-    private void checkUserZipCode (int zip)
-    {
-        // four numbers
-    }
-
-    private void setUserStreet (String street)
-    {
-        userStreet = street;
-    }
-
-    private void checkUserStreet (String street)
-    {
-        // think bout dis 1
-    }
-
-    private void setUserCity (String city)
-    {
-        userCity = city;
-    }
-
-    private void checkCity (String city)
-    {
-        // must be existing US city
-    }
-
-    private void setUserState (String state)
-    {
-        userState = state;
-    }
-
-    private void checkState (String state)
-    {
-        // must be existing US state
-    }
-    public String getUserName()
-    {
-        return userName;
-    }
-
-    public String getUserNickname ()
-    {
-        return userNickname;
-    }
-
-    public String getUserEmail ()
-    {
-        return userEmail;
-    }
-
-    public String getUserState () { return userState; }
-
-    public String getUserStreet ()
-    {
-        return userStreet;
-    }
-
-    public String getUserCity ()
-    {
-        return userCity;
-    }
-
-    public int getUserZipCode ()
-    {
-        return userZipCode;
+        return true;
     }
 }
+
 
 /*
 
 
 
 
-
-
-NEXT CLASS: userPayment
-
-
-
-
-
+        NEXT CLASS
+        
+        
+        
 */
-
-// This class is "done", conceptually. Again, it's untested.
 
 import java.util.*;
 
-public class userPayment {
-    private long cardNumber;
-    private int securityCode;
-    private int expirationDate;
-    private String firstName;
-    private String lastName;
+public class createAccount {
+
+    String accountUserName;
+    String accountPassword;
+    String accountEmail;
 
     Scanner scnr = new Scanner(System.in);
 
-    public void setCardNumber (long num)
+    public createAccount (String email, String userName, String password)
     {
-        checkCardNumber(num);
-        cardNumber = num;
+        setAccountEmail(email);
+        setAccountUserName(userName);
+        setAccountPassword(password);
     }
 
-    public void setExpirationDate (int date)
+    public String getAccountEmail () { return accountEmail; }
+
+    public String getAccountPassword () { return accountPassword; }
+
+    private void setAccountUserName (String userName) // acts as the key
     {
-        checkExpirationDate(date);
-        expirationDate = date;
+        accountUserName = userName;
     }
 
-    public void setSecurityCode (int code)
+    private void setAccountEmail (String email)
     {
-        checkSecurityCode(code);
-        securityCode = code;
+        if (checkEmail(email))
+            accountEmail = email;
     }
 
-    public void setFirstName (String first)
+    private void setAccountPassword (String password)
     {
-        checkFirstName(first);
-        firstName = first;
+        if (checkPassword(password))
+            accountPassword = password;
     }
 
-    public void setLastName (String last)
-    {
-        checkLastName(Last);
-        lastName = last;
-    }
-
-    public long getCardNumber ()
-    {
-        return cardNumber;
-    }
-
-    public int getExpirationDate ()
-    {
-        return expirationDate;
-    }
-
-    public int getSecurityCode ()
-    {
-        return securityCode;
-    }
-
-    public String getFirstName ()
-    {
-        return firstName;
-    }
-
-    public String getLastName()
-    {
-        return lastName;
-    }
-
-    // Checks if the input is all numbers and if it's the right length for a card number (15 or 16 digits).
-    private boolean checkCardNumber (long num) throws NumberFormatException
-    {
-        // Checks if input is a long
-        String numString = String.valueOf(num);
-        try {
-            long numberValidation = Long.parseLong(numString);
-        } catch (NumberFormatException e) {
-            System.out.println("Enter a valid card number.");
-            checkCardNumber(scnr.nextLong());
+    // Password must contain at least 2 special characters and 2 capital letters.
+    private boolean checkPassword (String pass) {
+        boolean specialChars;
+        int i = 0;
+        int specialCounter = 0;
+        int capitalCounter = 0;
+        while (i <= accountPassword.length()) {
+            if (!String.valueOf(accountPassword.charAt(i)).matches("^[a-zA-Z]*$")) ;
+            specialCounter++;
+            if (Character.isUpperCase(accountPassword.charAt(i)))
+                capitalCounter++;
+            i++;
         }
-        // Checks the numbers length
-        int digits = numString.length();
-        if (digits != 16 && digits != 15)
+        if (specialCounter < 2)
         {
-            System.out.println("Please, enter a valid card number.");
-            checkCardNumber(scnr.nextLong());
+            System.out.println("Please, 2 or more special characters.");
+            checkPassword(scnr.next());
         }
 
+        if (capitalCounter < 2)
+        {
+            System.out.println("Please, 2 or more capital letters.");
+            checkPassword(scnr.next());
+        }
         return true;
     }
 
-    /*
-        Date is a 4 digit number, the first 2 should be the month and the last two the year.
-
-        Checks if the expiration dates first two digits are between "01" & "12". Also checks if the last two are
-        between "16" & "26" (this assumes cards have to be renewed every 5 yrs). Any variable with the letter 'S' to the
-        right of it is simply the String version of the int.
-
-        I really wanna try to add that auto insert "/" feature when inputting dates but I think that
-        should be through the UI??
-     */
-    private boolean checkExpirationDate (int date) throws NumberFormatException
-    {
-        // Checks if input is an int
-        String dateS = String.valueOf(date);
-        try {
-            int dateValidation = Integer.parseInt(dateS);
-        } catch (NumberFormatException e) {
-            System.out.println("Enter a valid expiration date.");
-            checkExpirationDate(scnr.nextInt());
-        }
-
-        // Checks the length of the date, it should only be 4 digits.
-        int digits = dateS.length();
-        if (digits != 4)
+        // checks if email contains an '@' and '.com'
+        private boolean checkEmail(String email)
         {
-            System.out.println("Please, enter a valid expiration date.");
-            checkExpirationDate(scnr.nextInt());
-        }
-
-        // This will get the last digit and remove it then, get the new last digit. Thus getting the last two (year).
-        int lastDateDigit = date % 10;  // 4th digit
-        int a = date/10;  // The variable 'a' will be used to take apart the date (3 digits).
-        int b = a % 10;  // The variable 'b' will be used to hold a specific digit of the date (3rd digit).
-        String yearS = String.valueOf(b).concat(String.valueOf(lastDateDigit)); // Places the last two digits together.
-        int year = Integer.parseInt(yearS); // Last 2 digits
-
-        // Checks the years range (16-26)
-        if (year < 16 || year > 26)
-        {
-            System.out.println("Enter a valid year.");
-            checkExpirationDate(scnr.nextInt());
-        }
-
-        a = a/10; // 2 digits
-        b = a % 10; // 2nd digit
-        a = a/10; // 1 digit
-        String monthS = String.valueOf(a).concat(String.valueOf(b)); // Places first two digits together
-        int month = Integer.parseInt(monthS); // First 2 digits
-
-        // Checks the months range (01-12)
-        if (month < 10)
-        {
-            // Checks a portion of the months range (01-09)
-            if (String.valueOf(monthS.charAt(0)).equals("0")) {
-                int m = monthS.charAt(1);
-                if (m < 1 || m > 9) {
-                    System.out.println("Enter a valid month.");
-                    checkExpirationDate(scnr.nextInt());
-                }
+            if (!email.contains("@") && !email.contains(".com"))
+            {
+                System.out.println("Please, enter a valid email.");
+                checkEmail(scnr.next());
             }
-        } else if (month > 12) {
-            System.out.println("Enter a valid month.");
-            checkExpirationDate(scnr.nextInt());
+            return true;
         }
-
-        return true;
-    }
-
-    // Checks if the cards security code is valid
-    private boolean checkSecurityCode (int code) throws NumberFormatException
-    {
-        // Checks if the input is an int
-        String codeS = String.valueOf(code);
-        try {
-            int codeValidation = Integer.parseInt(codeS);
-        } catch (NumberFormatException e) {
-            System.out.println("Enter a valid security code.");
-            checkSecurityCode(scnr.nextInt());
-        }
-
-        // Checks the length of the security code, it should only be 3 digits.
-        int digits = codeS.length();
-        if (digits != 3)
-        {
-            System.out.println("Please, enter a valid security code.");
-            checkSecurityCode(scnr.nextInt());
-        }
-
-        return true;
-    }
-
-    // Checks if first name consists of only letters
-    private boolean checkFirstName (String first)
-    {
-        boolean lettersOnly;
-        lettersOnly = first.matches("^[a-zA-Z]*$");
-        if (!lettersOnly)
-        {
-            System.out.println("Please, enter a valid first name.");
-            checkFirstName(scnr.next());
-        }
-        return true;
-    }
-
-    // Checks if last name consists of only letters
-    private boolean checkLastName (String last)
-    {
-        boolean lettersOnly;
-        lettersOnly = last.matches("^[a-zA-Z]*$");
-        if (!lettersOnly)
-        {
-            System.out.println("Please, enter a valid last name.");
-            checkLastName(scnr.next());
-        }
-        return true;
-    }
 }
