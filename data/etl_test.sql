@@ -1,3 +1,5 @@
+USE [ETL];
+GO
 
 SELECT DISTINCT
 	[b32].[title]
