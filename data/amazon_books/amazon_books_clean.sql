@@ -27,7 +27,7 @@ SELECT [AMAZON INDEX (ASIN)] AS [asin]
 	, [filename]
 	, [IMAGE URL] AS [image_url]
 	, [title]
-	, [author]
+	, LTRIM([author]) AS [author]
 	, [category]
 	, REPLACE([FILENAME],'.jpg','') AS [isbn]
 FROM [dbo].[amazon_books] AS [ab1]
@@ -38,7 +38,7 @@ WHERE [AMAZON INDEX (ASIN)] NOT IN
 	FROM
 	(
 		SELECT [AMAZON INDEX (ASIN)]
-			, REPLACE(REPLACE(REPLACE(REPLACE(REPLACE([author],' ', ''),'.',''),'''',''),'-',''),'/','') AS [author]
+			, REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(LTRIM([author]),' ', ''),'.',''),'''',''),'-',''),'/','') AS [author]
 		FROM
 		(
 			SELECT DISTINCT [AMAZON INDEX (ASIN)], [author]
@@ -47,9 +47,9 @@ WHERE [AMAZON INDEX (ASIN)] NOT IN
 		) AS [nd]
 	) AS [nc]
 	WHERE [author] LIKE '%[^a-Z0-9]%'
-		AND [author] IS NOT NULL
-		AND LEN([author]) > 1
-);
+)
+	AND [ab1].[author] IS NOT NULL
+	AND LEN([ab1].[author]) > 1;
 GO
 
 SELECT TOP 100 * FROM [dbo].[amazon_books_clean]

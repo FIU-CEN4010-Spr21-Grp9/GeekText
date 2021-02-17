@@ -1,3 +1,5 @@
+USE [GeekText];
+GO
 /*
 Title: book_author.sql
 Desc: Create the book_author child table of book

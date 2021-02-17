@@ -11,11 +11,14 @@ CREATE TABLE [dbo].[goodreads_books_clean_authors]
 (
 	[bookID] INT
 	, [author] VARCHAR(200)
+	, [order] INT NULL
 );
 GO
 
 INSERT INTO [dbo].[goodreads_books_clean_authors]
-SELECT [bookID], value AS [author]
+SELECT [bookID]
+	, value AS [author]
+	, ROW_NUMBER() OVER (PARTITION BY [bookID] ORDER BY CHARINDEX(value,[authors])) AS [order]
 FROM [dbo].[goodreads_books]
 CROSS APPLY STRING_SPLIT([authors], '/')
 WHERE [bookID] NOT IN
@@ -33,3 +36,4 @@ WHERE [bookID] NOT IN
 		) AS [nc]
 		WHERE [authors] LIKE '%[^a-Z0-9]%'
 	)
+GO

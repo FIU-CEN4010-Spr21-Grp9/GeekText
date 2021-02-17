@@ -22,7 +22,7 @@ GO
 TRUNCATE TABLE [dbo].[amazon_books];
 GO
 
-BULK INSERT [dbo].[amazon_books] FROM 'U:\wwwroot\data\amazon_books\Task2\book32-listing.csv' WITH ( FORMAT = 'csv', FIRSTROW = 1 );
+BULK INSERT [dbo].[amazon_books] FROM 'C:\wwwroot\data\amazon_books\book32-listing.csv' WITH ( FORMAT = 'csv', FIRSTROW = 1 );
 GO
 
 SELECT TOP 100 * FROM [dbo].[amazon_books]

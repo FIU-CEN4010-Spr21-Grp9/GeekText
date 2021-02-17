@@ -53,18 +53,22 @@ LEFT JOIN [dbo].[goodreads_books_clean] AS [gbc]
 
 /*
 
+-- PUBLISHER --
 INSERT INTO [dbo].[publisher] ([publisherName])
 SELECT DISTINCT [publisher]
 FROM [dbo].[goodreads_books_clean]
 WHERE [publisher] IS NOT NULL
 ORDER BY [publisher]
 
+-- GENRE --
 INSERT INTO [dbo].[genre] ([genreName])
 SELECT DISTINCT [category] AS [genreName]
 FROM [dbo].[amazon_books_clean]
 ORDER BY [category];
 
-SELECT DISTINCT [author]
+-- AUTHOR --
+INSERT INTO [dbo].[author] ([authorName])
+SELECT DISTINCT RTRIM([author]) AS [author]
 FROM
 (
 	SELECT [author] FROM [dbo].[goodreads_books_clean_authors]
