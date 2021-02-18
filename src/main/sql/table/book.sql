@@ -14,15 +14,19 @@ BEGIN
 	CREATE TABLE [dbo].[book]
 	(
 		[bookID] INT IDENTITY(1,1) CONSTRAINT [PK_book_bookID] PRIMARY KEY NONCLUSTERED
-		, [title] VARCHAR(200) NOT NULL
-		, [publishDate] DATETIME NOT NULL
+		, [title] VARCHAR(500) NOT NULL
+		, [publishDate] DATETIME NULL
 		, [publisherID] INT CONSTRAINT [FK_book_publisherID_publisher_publisherID] FOREIGN KEY REFERENCES [dbo].[publisher] ([publisherID])
 		--, [genreID] INT NOT NULL CONSTRAINT [FK_book_genreID_genre_genreID] FOREIGN KEY REFERENCES [dbo].[genre] ([genreID])
 		, [price] NUMERIC(8,2) NOT NULL
 		, [description] VARCHAR(2000) NOT NULL
+		, [isbn] CHAR(10) NOT NULL
+		, [isbn13] BIGINT NULL
 	);
 END
 GO
+
+-- ALTER TABLE [dbo].[book] ALTER COLUMN [publishDate] DATETIME NULL;
 
 IF NOT EXISTS(SELECT * FROM sys.columns WHERE object_id = OBJECT_ID('book') AND name = 'isbn')
 BEGIN
@@ -47,3 +51,7 @@ BEGIN
 	ALTER TABLE [dbo].[book] DROP COLUMN [genreID];
 END
 GO
+
+ALTER TABLE [dbo].[book] ADD CONSTRAINT [UQ_book_isbn] UNIQUE CLUSTERED ([isbn]);
+GO
+

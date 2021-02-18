@@ -5,6 +5,7 @@ Author: Shawn Welsh
 History:
 	2021-02-08 - SJW - Created
 
+-- DROP TABLE [dbo].[purchase]
 */
 CREATE TABLE [dbo].[purchase]
 (

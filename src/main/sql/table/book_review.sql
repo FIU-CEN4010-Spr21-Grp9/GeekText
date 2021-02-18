@@ -13,8 +13,14 @@ CREATE TABLE [dbo].[book_review]
 	, [bookID] INT CONSTRAINT [FK_book_review_bookID_book_bookID] FOREIGN KEY REFERENCES [dbo].[book] ([bookID])
 	, [userID] INT CONSTRAINT [FK_book_review_userID_user_userID] FOREIGN KEY REFERENCES [dbo].[user] ([userID])
 	, [isAnonymous] BIT NOT NULL
-	, [rating] TINYINT NOT NULL
+	, [rating] NUMERIC(2,1) NOT NULL
 	, [title] VARCHAR(100) NOT NULL
 	, [description] VARCHAR(2000) NOT NULL
 );
+GO
+
+ALTER TABLE [dbo].[book_review] ADD CONSTRAINT [UQ_book_review_bookID_userID] UNIQUE CLUSTERED ([bookID], [userID]);
+GO
+
+CREATE NONCLUSTERED INDEX [ix_book_review_bookID_rating] ON [dbo].[book_review] ([bookID]) INCLUDE ([rating]);
 GO

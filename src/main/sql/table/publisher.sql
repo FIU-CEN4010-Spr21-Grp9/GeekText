@@ -21,3 +21,6 @@ CREATE TABLE [dbo].[publisher]
 	, CONSTRAINT [UQ_publisher_publisherName] UNIQUE CLUSTERED ([publisherName])
 );
 GO
+
+CREATE NONCLUSTERED INDEX [ix_publisher_publisherID_include_publisherName] ON [dbo].[publisher] ([publisherID]) INCLUDE ([publisherName])
+GO

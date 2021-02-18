@@ -16,7 +16,6 @@ CREATE TABLE [dbo].[author]
 	, [middleInit] CHAR(1) NULL
 	, [lastName] VARCHAR(100) NULL
 	, [authorName] VARCHAR(200) NOT NULL CONSTRAINT [UQ_author_authorName] UNIQUE CLUSTERED
-	, [bio] VARCHAR(2000) NOT NULL
-	, CONSTRAINT [UQ_author_lastName_firstName_middleInit] UNIQUE ([lastName], [firstName], [middleInit])
+	, [bio] VARCHAR(2000) NULL
 );
 GO
