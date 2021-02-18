@@ -12,63 +12,20 @@ Return: String VARCHAR value of genre names
 History:
 	2021-02-18 - SJW - Created
 
+SELECT * FROM [dbo].[udf_get_genre_list]()
 */
-CREATE FUNCTION [dbo].[udf_get_genre_list](@bookID INT)
-RETURNS VARCHAR(500)
+CREATE FUNCTION [dbo].[udf_get_genre_list]() --@bookID INT)
+RETURNS TABLE
 AS
-BEGIN
-	DECLARE @return VARCHAR(1000)
-		, @genreName VARCHAR(100)
-		, @c INT
-		, @m INT;
-
-	SET @return = '';
-
-	DECLARE @result TABLE
-	(
-		[ID] INT IDENTITY
-		, [genreName] VARCHAR(100)
-	);
-
-	INSERT @result
-	SELECT DISTINCT [gen].[genreName]
-	FROM [dbo].[book_genre] AS [bg1]
-	INNER JOIN [dbo].[genre] AS [gen] ON [bg1].[genreID] = [gen].[genreID]
-	WHERE [bookID] = @bookID
-	ORDER BY [genreName];
-
-	SET @c = 1;
-	SELECT @m = COUNT(*) FROM @result;
-
-	IF(@m < 1)
-	BEGIN
-		SET @return = 'N/A';
-	END
-	IF(@m = 1)
-	BEGIN
-		SELECT @return = [genreName] FROM @result WHERE [ID] = 1;
-	END
-	ELSE
-	BEGIN
-		WHILE(@c <= @m)
-		BEGIN
-			SELECT @genreName = [genreName]
-			FROM @result
-			WHERE [ID] = @c;
-			
-			IF(@c = 1)
-			BEGIN
-				SET @return = @genreName
-			END
-			ELSE
-			BEGIN
-				SET @return = @return + '; ' + @genreName
-			END
-
-			SET @c = @c + 1;
-		END
-	END
-
-	RETURN @return;
-END
+RETURN
+	SELECT [bk].[bookID]
+		, STUFF(( SELECT '/' + [gr].[genreName] AS [text()]
+					FROM [dbo].[book_genre] AS [bg]
+					LEFT JOIN [dbo].[genre] AS [gr] ON [bg].[genreID] = [gr].[genreID]
+					WHERE [bg].[bookID] = [bk].[bookID]
+					ORDER BY [gr].[genreName]
+					FOR XML PATH('') -- Select it as XML
+					), 1, 1, '' )
+		AS [genreList]
+	FROM [dbo].[book] AS [bk];
 GO

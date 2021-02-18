@@ -15,65 +15,21 @@ History:
 */
 /*
 
-SELECT [dbo].[udf_get_author_list](1)
+SELECT * FROM [dbo].[udf_get_author_list]()
 
 */
-CREATE FUNCTION [dbo].[udf_get_author_list](@bookID INT)
-RETURNS VARCHAR(500)
+CREATE FUNCTION [dbo].[udf_get_author_list]() --@bookID INT)
+RETURNS TABLE
 AS
-BEGIN
-	DECLARE @return VARCHAR(1000)
-		, @authorName VARCHAR(200)
-		, @c INT
-		, @m INT;
-
-	SET @return = '';
-
-	DECLARE @result TABLE
-	(
-		[ID] INT IDENTITY
-		, [authorName] VARCHAR(200)
-	);
-
-	INSERT @result
-	SELECT DISTINCT [ath].[authorName]
-	FROM [dbo].[book_author] AS [ba1]
-	INNER JOIN [dbo].[author] AS [ath] ON [ba1].[authorID] = [ath].[authorID]
-	WHERE [bookID] = @bookID
-	ORDER BY [authorName];
-
-	SET @c = 1;
-	SELECT @m = COUNT(*) FROM @result;
-
-	IF(@m < 1)
-	BEGIN
-		SET @return = 'N/A';
-	END
-	IF(@m = 1)
-	BEGIN
-		SELECT @return = [authorName] FROM @result WHERE [ID] = 1;
-	END
-	ELSE
-	BEGIN
-		WHILE(@c <= @m)
-		BEGIN
-			SELECT @authorName = [authorName]
-			FROM @result
-			WHERE [ID] = @c;
-			
-			IF(@c = 1)
-			BEGIN
-				SET @return = @authorName
-			END
-			ELSE
-			BEGIN
-				SET @return = @return + '; ' + @authorName
-			END
-
-			SET @c = @c + 1;
-		END
-	END
-
-	RETURN @return;
-END
+RETURN
+	SELECT [bk].[bookID]
+		, STUFF(( SELECT '/' + [at].[authorName] AS [text()]
+					FROM [dbo].[book_author] AS [ba]
+					LEFT JOIN [dbo].[author] AS [at] ON [ba].[authorID] = [at].[authorID]
+					WHERE [ba].[bookID] = [bk].[bookID]
+					ORDER BY [ba].[order]
+					FOR XML PATH('') -- Select it as XML
+					), 1, 1, '' )
+		AS [authorList]
+	FROM [dbo].[book] AS [bk];
 GO

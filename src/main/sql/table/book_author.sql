@@ -18,3 +18,7 @@ CREATE TABLE [dbo].[book_author]
 	, CONSTRAINT [UQ_book_author_bookID_order] UNIQUE NONCLUSTERED ([bookID], [order])
 );
 GO
+
+-- COVERING INDEX --
+CREATE NONCLUSTERED INDEX [ix_book_author_bookID_order_authorID] ON [dbo].[book_author] ([bookID], [order], [authorID]);
+GO
