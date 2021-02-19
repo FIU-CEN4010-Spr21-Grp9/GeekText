@@ -171,12 +171,12 @@ public class Book
 	// author list //
 	// need to clear array and assign values for SET
 	
-	// return pointer for get or a string?
+	// return pointer to an array for get or a concatentated string?
 	
 	
 	// genre list //
 	// need to clear array and assign values for SET
 	
-	// return pointer for get or a string?
+	// return pointer to an array for get or a concatentated string?
 	
 }

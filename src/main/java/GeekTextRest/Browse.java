@@ -1,6 +1,4 @@
 package GeekTextRest.restservice;
-
-import javax.persistence.*;
 /**
 *  Title: Browse
 *  Semester: CEN4010 - Spring 2021
@@ -15,5 +13,18 @@ import javax.persistence.*;
 */
 public class Browse
 {
-
+	private int genreID;
+	private int booksPerPage;
+	// collection of book objects private ??? books;
+	
+	// TO DO
+	// Start a new search
+	
+	// Clear existing search, start another (call previous "new search")
+	
+	// Sort an existing search
+	
+	// Page an existing search
+	
+	
 }
