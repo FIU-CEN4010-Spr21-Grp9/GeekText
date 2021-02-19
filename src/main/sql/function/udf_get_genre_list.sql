@@ -18,6 +18,10 @@ CREATE FUNCTION [dbo].[udf_get_genre_list]() --@bookID INT)
 RETURNS TABLE
 AS
 RETURN
+SELECT [bookID]
+	, REPLACE([genreList], '&amp;', '&') AS [genreList]
+FROM
+(
 	SELECT [bk].[bookID]
 		, STUFF(( SELECT '/' + [gr].[genreName] AS [text()]
 					FROM [dbo].[book_genre] AS [bg]
@@ -27,5 +31,6 @@ RETURN
 					FOR XML PATH('') -- Select it as XML
 					), 1, 1, '' )
 		AS [genreList]
-	FROM [dbo].[book] AS [bk];
+	FROM [dbo].[book] AS [bk]
+) AS [ir1];
 GO
