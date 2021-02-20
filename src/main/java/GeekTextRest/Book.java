@@ -14,7 +14,20 @@ import javax.persistence.*;
 * 
 */
 @Entity
-@Table(name="book")
+@NamedStoredProcedureQueries
+({
+    @NamedStoredProcedureQuery(
+            name = "getBooksByGenreID", 
+            procedureName = "usp_get_bookList_by_genreID", 
+            resultClasses = { Book.class },
+            parameters = {
+                    @StoredProcedureParameter(
+                            mode = ParameterMode.IN, 
+                            name = "genreID", 
+                            type = Integer.class)
+            }
+        )
+})
 public class Book
 {
     //// INTERNAL PRIVATE VALUES ////
