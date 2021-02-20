@@ -33,4 +33,19 @@ public class BooksService
        storedProcedureQuery.execute();
        return storedProcedureQuery.getResultList();
     }
+    
+    @SuppressWarnings("unchecked")
+    public List<Book> browseByRatingViaProc(Integer rating) {
+        StoredProcedureQuery storedProcedureQuery = this.entityManager.createNamedStoredProcedureQuery("getBooksByRating");
+        storedProcedureQuery.setParameter("rating", rating);
+        storedProcedureQuery.execute();
+        return storedProcedureQuery.getResultList();
+     }
+    
+    @SuppressWarnings("unchecked")
+    public List<Book> browseByTopSellersViaProc() {
+        StoredProcedureQuery storedProcedureQuery = this.entityManager.createNamedStoredProcedureQuery("getBooksByTopSellers");
+        storedProcedureQuery.execute();
+        return storedProcedureQuery.getResultList();
+     }
 }

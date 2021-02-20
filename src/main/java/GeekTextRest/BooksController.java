@@ -31,8 +31,29 @@ public class BooksController
     @RequestMapping(value="/query/viaproc/bygenre", method=RequestMethod.GET)
     public List<Book> getBooksByGenreID(Integer genreID) {
         System.out.println("kxh1");
-        //Integer genreID = 1; // need to write bit to pass in an ID from rest/gui
         List<Book> books = booksService.browseByGenreViaProc(genreID);
+        if(books == null) {
+            return new ArrayList<Book>();
+        } else {
+            return books;
+        }
+    }
+    
+    @RequestMapping(value="/query/viaproc/byrating", method=RequestMethod.GET)
+    public List<Book> getBooksByRating(Integer rating) {
+        System.out.println("kxh1");
+        List<Book> books = booksService.browseByRatingViaProc(rating);
+        if(books == null) {
+            return new ArrayList<Book>();
+        } else {
+            return books;
+        }
+    }
+    
+    @RequestMapping(value="/query/viaproc/topsellers", method=RequestMethod.GET)
+    public List<Book> getBooksByTopSellers() {
+        System.out.println("kxh1");
+        List<Book> books = booksService.browseByTopSellersViaProc();
         if(books == null) {
             return new ArrayList<Book>();
         } else {

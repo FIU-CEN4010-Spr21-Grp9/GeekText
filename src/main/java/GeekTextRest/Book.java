@@ -26,6 +26,22 @@ import javax.persistence.*;
                             name = "genreID", 
                             type = Integer.class)
             }
+        ), 
+    @NamedStoredProcedureQuery(
+            name = "getBooksByRating", 
+            procedureName = "usp_get_bookList_by_rating", 
+            resultClasses = { Book.class },
+            parameters = {
+                    @StoredProcedureParameter(
+                            mode = ParameterMode.IN, 
+                            name = "rating", 
+                            type = Integer.class)
+            }
+        ), 
+    @NamedStoredProcedureQuery(
+            name = "getBooksByTopSellers", 
+            procedureName = "usp_get_bookList_by_top_seller", 
+            resultClasses = { Book.class }
         )
 })
 public class Book
