@@ -1,4 +1,4 @@
-package GeekTextRest.restservice;
+package GeekTextRest;
 
 public class GeekTextRest {
 

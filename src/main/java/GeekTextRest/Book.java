@@ -1,4 +1,4 @@
-package GeekTextRest.restservice;
+package GeekTextRest;
 
 import javax.persistence.*;
 /**
@@ -30,8 +30,13 @@ import javax.persistence.*;
 })
 public class Book
 {
-    //// INTERNAL PRIVATE VALUES ////
+	@Id
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    //private Long id;
 	private Integer bookID;
+	
+	//// INTERNAL PRIVATE VALUES ////
+	//private Integer bookID;
 	private String title;
 	private String publishDate;
 	private String publisher;
@@ -41,8 +46,10 @@ public class Book
 	private Integer isbn13;
 	private String coverUrl;
 	private Float rating;
-	private String[] authors;
-	private String[] genres;
+	private String authorList;
+	private String genreList;
+	//private String[] authors;
+	//private String[] genres;
 	
 	//// CONSTRUCTORS ////
 	// default //
@@ -66,8 +73,8 @@ public class Book
 		this.isbn13 = isbn13;
 		this.coverUrl = coverUrl;
 		this.rating = rating;
-		//this.authors = SPLIT STRING authorList;
-		//this.genres = SPLIT STRING genreList;		
+		this.authorList = authorList;
+		this.genreList = genreList;		
 	}
 	
 	//// GET/SET OBJECT CODE ////
@@ -182,12 +189,34 @@ public class Book
 	}
 	
 	// author list //
+	public String getAuthorList()
+	{
+		return authorList;
+	}
+	
+	public void setAuthorList(String authorList)
+	{
+		this.authorList = authorList;
+	}
+	
+	// author array //
 	// need to clear array and assign values for SET
 	
 	// return pointer to an array for get or a concatentated string?
 	
 	
 	// genre list //
+	public String getGenreList()
+	{
+		return genreList;
+	}
+	
+	public void setGenreList(String genreList)
+	{
+		this.genreList = genreList;
+	}
+	
+	// genre array //
 	// need to clear array and assign values for SET
 	
 	// return pointer to an array for get or a concatentated string?

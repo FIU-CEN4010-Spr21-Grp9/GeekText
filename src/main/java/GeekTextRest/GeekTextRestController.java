@@ -1,4 +1,4 @@
-package GeekTextRest.restservice;
+package GeekTextRest;
 
 import java.util.concurrent.atomic.AtomicLong;
 

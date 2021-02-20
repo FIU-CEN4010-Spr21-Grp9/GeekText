@@ -1,4 +1,4 @@
-package GeekTextRest.restservice;
+package GeekTextRest;
 /**
 *  Title: Browse
 *  Semester: CEN4010 - Spring 2021

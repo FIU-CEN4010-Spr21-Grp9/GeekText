@@ -1,4 +1,4 @@
-package GeekTextRest.restservice.configuration;
+package GeekTextRest;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -8,8 +8,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableAutoConfiguration
-@EntityScan(basePackages = {"GeekTextRest.restservice"})
-@EnableJpaRepositories(basePackages = {"GeekTextRest.restservice"})
+@EntityScan(basePackages = {"GeekTextRest"})
+@EnableJpaRepositories(basePackages = {"GeekTextRest"})
 @EnableTransactionManagement
 
 public class RepositoryConfiguration

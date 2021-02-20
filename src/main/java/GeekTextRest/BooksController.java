@@ -1,4 +1,4 @@
-package GeekTextRest.restservice;
+package GeekTextRest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,11 +28,11 @@ public class BooksController
 	@Autowired
     BooksService booksService;
     //ellipsis//Check through stored procedures
-    @RequestMapping(value="/query/viaproc/likegenre", method=RequestMethod.GET)
+    @RequestMapping(value="/query/viaproc/bygenre", method=RequestMethod.GET)
     public List<Book> getBooksByGenreID(Integer genreID) {
         System.out.println("kxh1");
-        Integer genreID = 1; // need to write bit to pass in an ID
-        List<Book> books = booksService.findAllViaProc(genreID);
+        //Integer genreID = 1; // need to write bit to pass in an ID from rest/gui
+        List<Book> books = booksService.browseByGenreViaProc(genreID);
         if(books == null) {
             return new ArrayList<Book>();
         } else {
