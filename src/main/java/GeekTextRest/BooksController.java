@@ -27,7 +27,8 @@ public class BooksController
 {
 	@Autowired
     BooksService booksService;
-    //ellipsis//Check through stored procedures
+    
+	// http://localhost:8080/books/query/viaproc/bygenre?genreID=1
     @RequestMapping(value="/query/viaproc/bygenre", method=RequestMethod.GET)
     public List<Book> getBooksByGenreID(Integer genreID) {
         System.out.println("kxh1");
@@ -39,6 +40,7 @@ public class BooksController
         }
     }
     
+    // http://localhost:8080/books/query/viaproc/byrating?rating=3
     @RequestMapping(value="/query/viaproc/byrating", method=RequestMethod.GET)
     public List<Book> getBooksByRating(Integer rating) {
         System.out.println("kxh1");
@@ -50,6 +52,7 @@ public class BooksController
         }
     }
     
+    // http://localhost:8080/books/query/viaproc/topsellers
     @RequestMapping(value="/query/viaproc/topsellers", method=RequestMethod.GET)
     public List<Book> getBooksByTopSellers() {
         System.out.println("kxh1");

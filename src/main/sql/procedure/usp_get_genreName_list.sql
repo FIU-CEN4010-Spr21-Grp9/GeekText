@@ -23,7 +23,7 @@ History:
 SET NOCOUNT ON;
 
 SELECT [genreID]
-	, [genreName]
+	, [genreName] AS [genre_name]
 FROM [dbo].[genre]
 ORDER BY [genreName];
 
