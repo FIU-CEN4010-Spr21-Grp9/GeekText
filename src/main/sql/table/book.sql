@@ -55,3 +55,5 @@ GO
 ALTER TABLE [dbo].[book] ADD CONSTRAINT [UQ_book_isbn] UNIQUE CLUSTERED ([isbn]);
 GO
 
+CREATE NONCLUSTERED INDEX [ix_book_bookID_include] ON [dbo].[book] ([bookID]) INCLUDE ([title], [publishDate], [publisherID], [price], [description], [isbn], [isbn13])
+GO

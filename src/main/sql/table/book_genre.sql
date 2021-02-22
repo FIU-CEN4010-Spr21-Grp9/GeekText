@@ -16,3 +16,6 @@ CREATE TABLE [dbo].[book_genre]
 	, CONSTRAINT [PK_book_genre] PRIMARY KEY CLUSTERED ([genreID], [bookID])
 );
 GO
+
+CREATE NONCLUSTERED INDEX [ix_book_genre_bookID_genreID] ON [dbo].[book_genre] ([bookID], [genreID]);
+GO
