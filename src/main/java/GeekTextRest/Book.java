@@ -1,6 +1,9 @@
 package GeekTextRest;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
 *  Title: Book
 *  Semester: CEN4010 - Spring 2021
@@ -47,12 +50,9 @@ import javax.persistence.*;
 public class Book
 {
 	@Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
-    //private Long id;
 	private Integer bookID;
 	
 	//// INTERNAL PRIVATE VALUES ////
-	//private Integer bookID;
 	private String title;
 	private String publishDate;
 	private String publisher;
@@ -64,8 +64,8 @@ public class Book
 	private Float rating;
 	private String authorList;
 	private String genreList;
-	//private String[] authors;
-	//private String[] genres;
+	// private List<Author> authors;
+	// private List<Genre> genres;
 	
 	//// CONSTRUCTORS ////
 	// default //
