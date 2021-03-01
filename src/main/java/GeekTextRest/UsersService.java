@@ -31,6 +31,7 @@ public class UsersService
        StoredProcedureQuery storedProcedureQuery = this.entityManager.createNamedStoredProcedureQuery("putNewUserInsert");
        storedProcedureQuery.setParameter("userName", userName);
        storedProcedureQuery.setParameter("password", password);
+       // ETC...
        storedProcedureQuery.execute();
        return storedProcedureQuery.getResultList();
     }

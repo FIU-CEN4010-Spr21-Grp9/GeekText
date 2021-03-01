@@ -28,9 +28,9 @@ public class UsersController
 	@Autowired
     UsersService usersService;
     
-	// http://localhost:8080/books/query/viaproc/bygenre?genreID=1
+	// http://localhost:8080/books/query/viaproc/createnewuser?username=newUser2&password=hello12&nickname=newb...
     @RequestMapping(value="/query/viaproc/createnewuser", method=RequestMethod.PUT)
-    public void putNewUserInsert(String userName, String password) {
+    public void putNewUserInsert(String userName, String password, String nickname, String firstName, Character middle) {
         System.out.println("kxh1");
         usersService.createNewUserViaProc(userName, password);
         //List<User> users = usersService.createNewUserViaProc(userName, password);
