@@ -41,5 +41,21 @@ import javax.persistence.*;
 
 public class User
 {
+	@Id
+	private Integer userID;
 	
+	//// INTERNAL PRIVATE VALUES ////
+	
+	////CONSTRUCTORS ////
+	// default //
+	public User()
+	{
+		
+	};
+	
+	// the real one //
+	public User(int userID)
+	{
+		this.userID = userID;
+	};
 }

@@ -20,7 +20,8 @@ Author: Shawn Welsh
 History:
 	2021-02-19 - SJW - Created
 
-EXEC [dbo].[usp_get_bookList_by_genreID] 1
+EXEC [dbo].[usp_get_bookList_by_genreID] @genreID = 1;
+
 */
 
 SET NOCOUNT ON;
