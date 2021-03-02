@@ -5,12 +5,12 @@ import javax.persistence.*;
 /**
 *  Title: Book
 *  Semester: CEN4010 - Spring 2021
-*  @author Shawn Welsh
+*  @author Shawn Welsh, Azul Barros
 * 
-* I affirm that this program is entirely my own work and none of it is the work
-* of any other person. 
+* I affirm that this program is entirely group 9s and none of it is the work
+* of any other. 
 * 
-* This class provides the book object for the GeekText application group
+* This class inserts a user for the GeekText application group
 * project for group 9
 * 
 */
@@ -34,7 +34,26 @@ import javax.persistence.*;
                             mode = ParameterMode.IN, 
                             name = "nickname", 
                             type = String.class)
-                    // ETC...
+		    , @StoredProcedureParameter(
+                            mode = ParameterMode.IN, 
+                            name = "firstname", 
+                            type = String.class)
+		    , @StoredProcedureParameter(
+                            mode = ParameterMode.IN, 
+                            name = "middleInit", 
+                            type = Character.class)
+	            , @StoredProcedureParameter(
+                            mode = ParameterMode.IN, 
+                            name = "lastname", 
+                            type = String.class)        
+		    , @StoredProcedureParameter(
+                            mode = ParameterMode.IN, 
+                            name = "email", 
+                            type = String.class)
+		    , @StoredProcedureParameter(
+                            mode = ParameterMode.IN, 
+                            name = "phone", 
+                            type = Character.class)
             }
         )
 })
