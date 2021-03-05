@@ -15,11 +15,12 @@ public class ReviewController {
 	@Autowired
     ReviewService reviewService;
     
-	// http://localhost:8080/comment/query/viaproc/bybookid?bookID=774002
-    @RequestMapping(value="/query/viaproc/bybookid", method=RequestMethod.GET)
-    public List<Review> getReviewByBookIDLike(Integer bookID) {
+	// http://localhost:8080/review/query/viaproc/byreviewid?reviewID=1
+	// http://localhost:8080/review/query/viaproc/byreviewid?reviewID=2
+    @RequestMapping(value="/query/viaproc/byreviewid", method=RequestMethod.GET)
+    public List<Review> getReviewByReviewID(Integer reviewID) {
         System.out.println("kxh1");
-        List<Review> review = reviewService.reviewByBookIDLikeViaProc(bookID);
+        List<Review> review = reviewService.reviewByReviewIDViaProc(reviewID);
         if(review == null) {
             return new ArrayList<Review>();
         } else {
@@ -27,15 +28,4 @@ public class ReviewController {
         }
     }
     
-    // http://localhost:8080/comment/query/viaproc/byuserid?userID=1
-    @RequestMapping(value="/query/viaproc/byuserid", method=RequestMethod.GET)
-    public List<Review> getCommentByUserIDLike(Integer userID) {
-        System.out.println("kxh1");
-        List<Review> review = reviewService.reviewByUserIDLikeViaProc(userID);
-        if(review == null) {
-            return new ArrayList<Review>();
-        } else {
-            return review;
-        }
-    }
 }
