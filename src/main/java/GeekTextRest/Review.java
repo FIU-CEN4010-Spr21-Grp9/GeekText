@@ -6,24 +6,13 @@ import javax.persistence.*;
 @NamedStoredProcedureQueries
 ({
 	@NamedStoredProcedureQuery(
-            name = "getCommentByBookID", 
-            procedureName = "usp_get_bookList_by_genreID", 
+            name = "getReviewByReviewID", 
+            procedureName = "usp_get_review_by_reviewID", 
             resultClasses = { Review.class },
             parameters = {
                     @StoredProcedureParameter(
                             mode = ParameterMode.IN, 
-                            name = "bookID", 
-                            type = Integer.class)
-            }
-        ), 
-    @NamedStoredProcedureQuery(
-            name = "getCommentByUserID", 
-            procedureName = "usp_get_comment_by_userID", 
-            resultClasses = { Review.class },
-            parameters = {
-                    @StoredProcedureParameter(
-                            mode = ParameterMode.IN, 
-                            name = "userID", 
+                            name = "reviewID", 
                             type = Integer.class)
             }
         )         
