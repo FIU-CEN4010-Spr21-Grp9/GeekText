@@ -30,7 +30,9 @@ import javax.persistence.*;
 
 public class UserOrder {
 	 
-    private String userID;
+    @Id
+	private String userID;
+    
     private double amount;
     private String usersName;
     private String nickName;
@@ -38,13 +40,16 @@ public class UserOrder {
     private String userEmail;
     private String userPNum;
  
-    private List<UserOrderDetails> Info;
+    //private List<UserOrderDetails> Info;
  
-    public UserOrder() {
+    public UserOrder()
+    {
  
     }
+    
     public UserOrder(String userID, String nickName, double amount, String usersName, String userAddress,
-    		String userEmail, String userPNum) {
+    		String userEmail, String userPNum)
+    {
         this.userID = userID;
         this.amount = amount;
         this.usersName = usersName;
@@ -53,6 +58,8 @@ public class UserOrder {
         this.userEmail = userEmail;
         this.userPNum = userPNum;
     }
+    
+    
     public void setUserID(String userID) {
         this.userID = userID;
     }
@@ -67,7 +74,7 @@ public class UserOrder {
     public double getAmount() {
         return amount;
     }
-    public void setNickName() {
+    public void setNickName(String nickName) {
     	this.nickName = nickName;
     }
     public String getNickName() {
@@ -99,10 +106,15 @@ public class UserOrder {
     public String getUserPNum() {
         return userPNum;
     }
-    public void setInfo(List<UserOrderDetails> Info) {
-        this.Info = Info;
-    } List<UserOrderDetails> getInfo() {
-        return Info;
-    }
+    
+    //public void setInfo(List<UserOrderDetails> Info)
+    //{
+    //    this.Info = Info;
+    //} 
+    
+    //public List<UserOrderDetails> getInfo()
+    //{
+    //    return Info;
+    //}
  
 }

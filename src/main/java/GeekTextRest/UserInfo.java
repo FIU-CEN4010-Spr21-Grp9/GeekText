@@ -1,4 +1,5 @@
 package GeekTextRest;
+//import javax.persistence.*;
 /**
 *  Title: BookInfo
 *  Semester: CEN4010 - Spring 2021
@@ -13,7 +14,9 @@ package GeekTextRest;
 */
 public class UserInfo
 {
-	 
+	//@Id
+	//private int userID;
+	
 	    private String userAddress;
 	    private String nickName;
 	    private String usersName;

@@ -28,7 +28,10 @@ import javax.persistence.*;
     })
 })
 public class BookInfo {
-    private String ISBN;
+    @Id
+    private int bookID;
+	
+	private String ISBN;
     private String bookName;
     private double price;
  
