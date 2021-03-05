@@ -1,4 +1,4 @@
-package shoppingcart;
+package GeekTextRest;
 /**
 *  Title: BookInfo
 *  Semester: CEN4010 - Spring 2021

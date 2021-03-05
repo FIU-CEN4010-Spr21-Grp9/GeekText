@@ -1,5 +1,6 @@
-package shoppingcart;
+package GeekTextRest;
 import java.util.List;
+import javax.persistence.*;
 /**
 *  Title: UserOrder
 *  Semester: CEN4010 - Spring 2021
@@ -24,6 +25,7 @@ import java.util.List;
                             mode = ParameterMode.IN, 
                             name = "userID", 
                             type = String.class)
+    })
 })
 
 public class UserOrder {

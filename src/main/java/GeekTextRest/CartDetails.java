@@ -1,4 +1,5 @@
-package shoppingcart;
+package GeekTextRest;
+import javax.persistence.*;
 /**
 *  Title: BookInfo
 *  Semester: CEN4010 - Spring 2021
@@ -81,7 +82,7 @@ public class CartDetails {
 	double getSumTotal() {
 		double total = 0;
 		for (CartInfo Cart : this.Cart) {
-			total += Cart.getAmount();
+			total += Cart.getQuantity();
 		}
 		return total;
 	}

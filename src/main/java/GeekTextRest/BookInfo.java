@@ -1,4 +1,6 @@
-package shoppingcart;
+package GeekTextRest;
+
+import javax.persistence.*;
 /**
 *  Title: BookInfo
 *  Semester: CEN4010 - Spring 2021
@@ -23,6 +25,7 @@ package shoppingcart;
                             mode = ParameterMode.IN, 
                             name = "ISBN", 
                             type = String.class)
+    })
 })
 public class BookInfo {
     private String ISBN;

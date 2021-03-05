@@ -1,4 +1,4 @@
-package shoppingcart;
+package GeekTextRest;
 /**
 *  Title: BookInfo
 *  Semester: CEN4010 - Spring 2021
@@ -12,11 +12,15 @@ package shoppingcart;
 * 
 */
 public class CartInfo { 
+	
 	public BookInfo bookinfo;
 	private int quantity;
-	public CartInfo {
+	
+	public CartInfo()
+	{
 		this.quantity = 0;
 	}
+	
 	void setBookInfo(BookInfo bookinfo) {
 		this.bookinfo = bookinfo;
 	}

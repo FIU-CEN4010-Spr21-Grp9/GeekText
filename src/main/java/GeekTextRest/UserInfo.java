@@ -1,4 +1,4 @@
-package shoppingcart;
+package GeekTextRest;
 /**
 *  Title: BookInfo
 *  Semester: CEN4010 - Spring 2021
@@ -11,7 +11,8 @@ package shoppingcart;
 * project for group 9
 * 
 */
-	public class UserInfo {
+public class UserInfo
+{
 	 
 	    private String userAddress;
 	    private String nickName;
@@ -19,17 +20,19 @@ package shoppingcart;
 	    private String userEmail;
 	    private String userPNum;
 	 
-	    public UserInfo() {
+	    public UserInfo()
+	    {
 	 
 	    }
 	 
-	    public UserInfo(UserConfig userconfig) {
-	        this.usersName = userconfig.getUsersName();
-	        this.userAddress = userconfig.getUserAddress();
-	        this.userEmail = userconfig.getUserEmail();
-	        this.userPNum = userconfig.getUserPNum();
-	        // this.valid = userconfig.isValid();
-	    }
+	    //public UserInfo(UserConfig userconfig)
+	    //{
+	    //    this.usersName = userconfig.getUsersName();
+	    //    this.userAddress = userconfig.getUserAddress();
+	    //    this.userEmail = userconfig.getUserEmail();
+	    //    this.userPNum = userconfig.getUserPNum();
+	    //    // this.valid = userconfig.isValid();
+	    //}
 	    public void setnickName(String nickName) {
 	    	this.nickName = nickName;
 	    }
