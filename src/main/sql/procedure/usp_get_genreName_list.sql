@@ -22,10 +22,12 @@ History:
 
 SET NOCOUNT ON;
 
+SELECT 0 AS [genreID], 'Any' AS [genre_name] -- This is for the combo box "default" no genre
+UNION
 SELECT [genreID]
 	, [genreName] AS [genre_name]
 FROM [dbo].[genre]
-ORDER BY [genreName];
+ORDER BY [genreID];
 
 SET NOCOUNT OFF;
 

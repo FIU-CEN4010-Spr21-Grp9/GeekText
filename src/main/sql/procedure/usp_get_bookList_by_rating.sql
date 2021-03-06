@@ -29,7 +29,7 @@ DECLARE @ratingNum NUMERIC(2,1) = @rating;
 
 SELECT [det].[bookID]
 	, [det].[title]
-	, [det].[publishDate] AS [publish_date]
+	, CAST([det].[publishDate] AS DATE) AS [publish_date]
 	, [det].[publisherName] AS [publisher]
 	, [det].[genreList] AS [genre_list]
 	, [det].[price]
