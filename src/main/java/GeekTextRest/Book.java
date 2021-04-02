@@ -29,7 +29,7 @@ import javax.persistence.*;
                             name = "genreID", 
                             type = Integer.class)
             }
-        ), 
+        ),
     @NamedStoredProcedureQuery(
             name = "getBooksByRating", 
             procedureName = "usp_get_bookList_by_rating", 
@@ -45,6 +45,28 @@ import javax.persistence.*;
             name = "getBooksByTopSellers", 
             procedureName = "usp_get_bookList_by_top_seller", 
             resultClasses = { Book.class }
+        ),
+    @NamedStoredProcedureQuery(
+            name = "getBooksByAuthorID", 
+            procedureName = "usp_get_bookList_by_authorID", 
+            resultClasses = { Book.class },
+            parameters = {
+                    @StoredProcedureParameter(
+                            mode = ParameterMode.IN, 
+                            name = "authorID", 
+                            type = Integer.class)
+            }
+        ),
+    @NamedStoredProcedureQuery(
+            name = "getBookByBookID", 
+            procedureName = "usp_get_book_by_bookID", 
+            resultClasses = { Book.class },
+            parameters = {
+                    @StoredProcedureParameter(
+                            mode = ParameterMode.IN, 
+                            name = "bookID", 
+                            type = Integer.class)
+            }
         )
 })
 public class Book

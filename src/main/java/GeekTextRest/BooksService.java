@@ -48,4 +48,20 @@ public class BooksService
         storedProcedureQuery.execute();
         return storedProcedureQuery.getResultList();
      }
+    
+    @SuppressWarnings("unchecked")
+    public List<Book> browseByAuthorViaProc(Integer authorID) {
+        StoredProcedureQuery storedProcedureQuery = this.entityManager.createNamedStoredProcedureQuery("getBooksByAuthorID");
+        storedProcedureQuery.setParameter("authorID", authorID);
+        storedProcedureQuery.execute();
+        return storedProcedureQuery.getResultList();
+     }
+    
+    @SuppressWarnings("unchecked")
+    public List<Book> bookDetailViaProc(Integer bookID) {
+        StoredProcedureQuery storedProcedureQuery = this.entityManager.createNamedStoredProcedureQuery("getBookByBookID");
+        storedProcedureQuery.setParameter("bookID", bookID);
+        storedProcedureQuery.execute();
+        return storedProcedureQuery.getResultList();
+     }
 }
