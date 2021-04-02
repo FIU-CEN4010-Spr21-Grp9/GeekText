@@ -26,6 +26,17 @@ import javax.persistence.*;
                             name = "pattern", 
                             type = String.class)
             }
+        ),
+    @NamedStoredProcedureQuery(
+            name = "getAuthorsByBookID", 
+            procedureName = "usp_get_author_by_bookID", 
+            resultClasses = { Author.class },
+            parameters = {
+                    @StoredProcedureParameter(
+                            mode = ParameterMode.IN, 
+                            name = "bookID", 
+                            type = Integer.class)
+            }
         )
 })
 public class Author
