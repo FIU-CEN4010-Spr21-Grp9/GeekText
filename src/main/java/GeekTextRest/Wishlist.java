@@ -140,6 +140,22 @@ import javax.persistence.*;
 			}
 			),
 	@NamedStoredProcedureQuery(
+			name = "getWishlistID", 
+			procedureName = "wl_get_wishlistID", 
+			resultClasses = { Wishlist.class },
+			parameters = {
+					@StoredProcedureParameter(
+							mode = ParameterMode.IN, 
+							name = "userID", 
+							type = Integer.class)
+					, @StoredProcedureParameter(
+							mode = ParameterMode.IN, 
+							name = "name", 
+							type = String.class)
+
+			}
+			),
+	@NamedStoredProcedureQuery(
 			name = "deleteWishlist", 
 			procedureName = "wl_delete_wishlist", 
 			resultClasses = { Wishlist.class },
@@ -178,7 +194,7 @@ public class Wishlist
 	@Override
 	public String toString()
 	{
-		return String.format("UserID: %d, Name: %s, Title: %s, BookID: %d.", userID, name, title, bookID);
+		return String.format("Wishlist_ItemID: %d, UserID: %d, Name: %s, Title: %s, BookID: %d.",wishlist_itemID, userID, name, title, bookID);
 	}
 	
 	public Wishlist(int wishlist_itemID, int wishlistID, int userID,  String wishlistName, String title, int bookID)
@@ -242,6 +258,14 @@ public class Wishlist
 	public void setBookName(String bookName)
 	{
 		this.title = bookName;
+	}
+	public int getWishlistItemID()
+	{
+		return wishlist_itemID;
+	}
+	public void setWishlistItemID(int wishlist_itemID)
+	{
+		this.wishlist_itemID = wishlist_itemID;
 	}
 	
 }

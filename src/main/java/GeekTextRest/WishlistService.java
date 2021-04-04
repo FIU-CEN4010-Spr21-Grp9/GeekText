@@ -80,4 +80,12 @@ public class WishlistService
         storedProcedureQuery.execute();
         return storedProcedureQuery.getResultList();
      }
+    @SuppressWarnings("unchecked")
+    public List<Wishlist> getID(Integer userID, String name) {
+        StoredProcedureQuery storedProcedureQuery = this.entityManager.createNamedStoredProcedureQuery("getWishlistID");
+        storedProcedureQuery.setParameter("userID", userID);
+        storedProcedureQuery.setParameter("name", name);
+        storedProcedureQuery.execute();
+        return storedProcedureQuery.getResultList();
+     }
 }
