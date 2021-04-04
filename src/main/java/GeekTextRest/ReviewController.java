@@ -28,4 +28,15 @@ public class ReviewController {
         }
     }
     
+    // http://localhost:8080/review/query/viaproc/bybookid?bookID=774001
+    @RequestMapping(value="/query/viaproc/bybookid", method=RequestMethod.GET)
+    public List<Review> getReviewByBookID(Integer bookID) {
+        System.out.println("kxh1");
+        List<Review> review = reviewService.reviewByBookIDViaProc(bookID);
+        if(review == null) {
+            return new ArrayList<Review>();
+        } else {
+            return review;
+        }
+    }
 }

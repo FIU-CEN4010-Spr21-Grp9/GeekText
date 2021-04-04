@@ -15,7 +15,18 @@ import javax.persistence.*;
                             name = "reviewID", 
                             type = Integer.class)
             }
-        )         
+        ),
+	@NamedStoredProcedureQuery(
+            name = "getReviewByBookID", 
+            procedureName = "usp_get_review_by_bookID", 
+            resultClasses = { Review.class },
+            parameters = {
+                    @StoredProcedureParameter(
+                            mode = ParameterMode.IN, 
+                            name = "bookID", 
+                            type = Integer.class)
+            }
+        )
 })
 
 public class Review {
