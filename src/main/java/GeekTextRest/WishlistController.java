@@ -29,17 +29,6 @@ public class WishlistController {
         return items;
 
     }
-	//get number of wishlists
-//	@RequestMapping(value="/query/viaproc/wishlist", method=RequestMethod.PUT)
-//	public List<Wishlist> getNumberOfWishlists(Integer userID) {
-//        System.out.println("kxh1");
-//        List<Wishlist> items = wishlistService.getNumberOfWishlists(userID);
-//        if(items == null) {
-//            return new ArrayList<Wishlist>();
-//        } else {
-//            return items;
-//        }
-//    }
 	//creates a new wishlist
 	@RequestMapping(value="/newlist", method=RequestMethod.POST)
 	public List<Wishlist> createWishlist(Integer userID, String name) {
@@ -73,17 +62,6 @@ public class WishlistController {
             return items;
         }
     }
-	//moves an Item from one wishlist to another using the bookID
-	@RequestMapping(value="/move2", method=RequestMethod.POST)
-	public List<Wishlist> moveItemToNew2Wishlist(Integer userID, Integer bookID, Integer wishlistID) {
-        System.out.println("kxh1");
-        List<Wishlist> items = wishlistService.moveItemToNew2Wishlist(userID, bookID, wishlistID);
-        if(items == null) {
-            return new ArrayList<Wishlist>();
-        } else {
-            return items;
-        }
-    }
 	//Deletes a given book from a wishlist
 	@RequestMapping(value="/delete", method=RequestMethod.DELETE)
 	public void deleteItemFromWishlist(Integer userID, Integer wishlistItemID) {
@@ -102,6 +80,27 @@ public class WishlistController {
             return items;
         }
     }
+	@RequestMapping(value="/list", method=RequestMethod.POST)
+	public List<Wishlist> getWishlist(Integer userID, Integer wishlistID) {
+        System.out.println("kxh1");
+        List<Wishlist> items = wishlistService.getWishlist(userID, wishlistID);
+        if(items == null) {
+            return new ArrayList<Wishlist>();
+        } else {
+            return items;
+        }
+    }
+	@RequestMapping(value="/allLists", method=RequestMethod.POST)
+	public List<WishlistName> getAllWishlists(Integer userID) {
+        System.out.println("kxh1");
+        List<WishlistName> items = wishlistService.getAllWishlists(userID);
+        if(items == null) {
+            return new ArrayList<WishlistName>();
+        } else {
+            return items;
+        }
+    }
+	//Gets the ID of a list by name
 	@RequestMapping(value="/getID", method=RequestMethod.POST)
 	public List<Wishlist> getWishlistID(Integer userID, String name) {
         System.out.println("kxh1");
@@ -112,4 +111,26 @@ public class WishlistController {
             return items;
 //        }
     }
+	//moves an Item from one wishlist to another using the bookID
+//		@RequestMapping(value="/move2", method=RequestMethod.POST)
+//		public List<Wishlist> moveItemToNew2Wishlist(Integer userID, Integer bookID, Integer wishlistID) {
+//	        System.out.println("kxh1");
+//	        List<Wishlist> items = wishlistService.moveItemToNew2Wishlist(userID, bookID, wishlistID);
+//	        if(items == null) {
+//	            return new ArrayList<Wishlist>();
+//	        } else {
+//	            return items;
+//	        }
+//	    }
+	//get number of wishlists
+//	@RequestMapping(value="/query/viaproc/wishlist", method=RequestMethod.PUT)
+//	public List<Wishlist> getNumberOfWishlists(Integer userID) {
+//        System.out.println("kxh1");
+//        List<Wishlist> items = wishlistService.getNumberOfWishlists(userID);
+//        if(items == null) {
+//            return new ArrayList<Wishlist>();
+//        } else {
+//            return items;
+//        }
+//    }
 }

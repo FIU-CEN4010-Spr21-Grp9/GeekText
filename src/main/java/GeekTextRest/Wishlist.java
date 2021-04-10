@@ -170,6 +170,22 @@ import javax.persistence.*;
 							type = Integer.class)
 
 			}
+			),
+	@NamedStoredProcedureQuery(
+			name = "getWishlist", 
+			procedureName = "wl_get_wishlist_of_user", 
+			resultClasses = { Wishlist.class },
+			parameters = {
+					@StoredProcedureParameter(
+							mode = ParameterMode.IN, 
+							name = "userID", 
+							type = Integer.class)
+					, @StoredProcedureParameter(
+							mode = ParameterMode.IN, 
+							name = "wishlistID", 
+							type = Integer.class)
+
+			}
 			)
 })
 

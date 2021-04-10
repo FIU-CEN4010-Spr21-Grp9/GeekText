@@ -81,6 +81,21 @@ public class WishlistService
         return storedProcedureQuery.getResultList();
      }
     @SuppressWarnings("unchecked")
+    public List<Wishlist> getWishlist(Integer userID, Integer wishlistID) {
+        StoredProcedureQuery storedProcedureQuery = this.entityManager.createNamedStoredProcedureQuery("getWishlist");
+        storedProcedureQuery.setParameter("userID", userID);
+        storedProcedureQuery.setParameter("wishlistID", wishlistID);
+        storedProcedureQuery.execute();
+        return storedProcedureQuery.getResultList();
+     }
+    @SuppressWarnings("unchecked")
+    public List<WishlistName> getAllWishlists(Integer userID) {
+        StoredProcedureQuery storedProcedureQuery = this.entityManager.createNamedStoredProcedureQuery("getAllWishlists");
+        storedProcedureQuery.setParameter("userID", userID);
+        storedProcedureQuery.execute();
+        return storedProcedureQuery.getResultList();
+     }
+    @SuppressWarnings("unchecked")
     public List<Wishlist> getID(Integer userID, String name) {
         StoredProcedureQuery storedProcedureQuery = this.entityManager.createNamedStoredProcedureQuery("getWishlistID");
         storedProcedureQuery.setParameter("userID", userID);
@@ -88,4 +103,5 @@ public class WishlistService
         storedProcedureQuery.execute();
         return storedProcedureQuery.getResultList();
      }
+    
 }
