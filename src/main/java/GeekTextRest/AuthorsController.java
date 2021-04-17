@@ -39,4 +39,16 @@ public class AuthorsController
             return authors;
         }
     }
+    
+    // http://localhost:8080/authors/query/viaproc/byBookID?bookID=598898
+    @RequestMapping(value="/query/viaproc/byBookID", method=RequestMethod.GET)
+    public List<Author> getAuthorsByBookID(Integer bookID) {
+        System.out.println("kxh1");
+        List<Author> authors = authorsService.authorsByBookIdViaProc(bookID);
+        if(authors == null) {
+            return new ArrayList<Author>();
+        } else {
+            return authors;
+        }
+    }
 }

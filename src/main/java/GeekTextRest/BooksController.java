@@ -64,4 +64,27 @@ public class BooksController
         }
     }
 	
+    // http://localhost:8080/books/query/viaproc/byauthor?authorID=167797
+    @RequestMapping(value="/query/viaproc/byauthor", method=RequestMethod.GET)
+    public List<Book> getBooksByAuthorID(Integer authorID) {
+        System.out.println("kxh1");
+        List<Book> books = booksService.browseByAuthorViaProc(authorID);
+        if(books == null) {
+            return new ArrayList<Book>();
+        } else {
+            return books;
+        }
+    }
+    
+    // http://localhost:8080/books/query/viaproc/byBookId?bookID=598894
+    @RequestMapping(value="/query/viaproc/byBookId", method=RequestMethod.GET)
+    public List<Book> getBookByBookID(Integer bookID) {
+        System.out.println("kxh1");
+        List<Book> books = booksService.bookDetailViaProc(bookID);
+        if(books == null) {
+            return new ArrayList<Book>();
+        } else {
+            return books;
+        }
+    }
 }

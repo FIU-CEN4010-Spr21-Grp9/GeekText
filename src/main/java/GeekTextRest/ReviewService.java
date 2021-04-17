@@ -23,5 +23,12 @@ public class ReviewService {
        return storedProcedureQuery.getResultList();
     }
     
+    @SuppressWarnings("unchecked")
+    public List<Review> reviewByBookIDViaProc(Integer bookID) {
+       StoredProcedureQuery storedProcedureQuery = this.entityManager.createNamedStoredProcedureQuery("getReviewByBookID");
+       storedProcedureQuery.setParameter("bookID", bookID);
+       storedProcedureQuery.execute();
+       return storedProcedureQuery.getResultList();
+    }
 }
 

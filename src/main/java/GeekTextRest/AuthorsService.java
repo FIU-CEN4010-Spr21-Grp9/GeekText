@@ -33,4 +33,12 @@ public class AuthorsService
        storedProcedureQuery.execute();
        return storedProcedureQuery.getResultList();
     }
+    
+    @SuppressWarnings("unchecked")
+    public List<Author> authorsByBookIdViaProc(Integer bookID) {
+       StoredProcedureQuery storedProcedureQuery = this.entityManager.createNamedStoredProcedureQuery("getAuthorsByBookID");
+       storedProcedureQuery.setParameter("bookID", bookID);
+       storedProcedureQuery.execute();
+       return storedProcedureQuery.getResultList();
+    }
 }
